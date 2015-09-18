@@ -14,6 +14,8 @@ module AASM
           include_persistence base, :mongo_mapper
         elsif hierarchy.include?("Sequel::Model")
           include_persistence base, :sequel
+        elsif hierarchy.include?("AASM::Persistence::ModelPersistence::Base")
+          include_persistence base, :model
         else
           include_persistence base, :plain
         end
