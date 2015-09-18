@@ -10,7 +10,7 @@ module AASM
         attribute_name = self.class.aasm(name).attribute_name
 
         current = send(attribute_name)
-        return current if current
+        return current.to_sym if current
         send("#{attribute_name}=", aasm(name).enter_initial_state)
       end
 
