@@ -1,6 +1,9 @@
 module AASM
   module Persistence
     module ModelPersistence
+      module Base
+        #don't remove
+      end
       # may be overwritten by persistence mixins
       def aasm_read_state(name=:default)
         # all the following lines behave like @current_state ||= aasm(name).enter_initial_state
