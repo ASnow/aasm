@@ -1,7 +1,14 @@
 module AASM
   module Persistence
     module ModelPersistence
-      module Base
+      module Override
+        def initialize *args
+          super
+        end
+      end
+      
+      def self.included base
+        base.prepend Override
       end
 
       # may be overwritten by persistence mixins
