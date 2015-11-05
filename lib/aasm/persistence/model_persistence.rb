@@ -1,16 +1,6 @@
 module AASM
   module Persistence
     module ModelPersistence
-      module Override
-        def initialize *args
-          super
-        end
-      end
-      
-      def self.included base
-        base.prepend Override
-      end
-
       # may be overwritten by persistence mixins
       def aasm_read_state(name=:default)
         # all the following lines behave like @current_state ||= aasm(name).enter_initial_state
@@ -19,6 +9,7 @@ module AASM
         current = send(attribute_name)
         return current.to_sym if current
         send("#{attribute_name}=", aasm(name).enter_initial_state)
+        send(attribute_name)
       end
 
       # may be overwritten by persistence mixins
